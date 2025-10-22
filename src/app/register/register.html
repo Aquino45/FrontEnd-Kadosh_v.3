@@ -1,1 +1,58 @@
+<<<<<<< HEAD
 <p>register works!</p>
+=======
+<div class="page-register">
+  <div class="left-side">
+    <img src="/assets/Images/local_kadosh.jpg" alt="Óptica KADOSH">
+  </div>
+
+  <div class="right-side">
+    <div class="register-form">
+      <h2>Registro</h2>
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" placeholder="Nombres" [(ngModel)]="nombre" name="nombre" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" placeholder="Apellidos" [(ngModel)]="apellido" name="apellido" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-user-circle"></i>
+          <input type="text" placeholder="Usuario" [(ngModel)]="usuario" name="usuario" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" placeholder="Contraseña" [(ngModel)]="contrasena" name="contrasena" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" placeholder="Confirma Contraseña" [(ngModel)]="confirmar" name="confirmar" required>
+        </div>
+
+        <div class="terms">
+          <input type="checkbox" [(ngModel)]="acepto" name="acepto">
+          <label for="acepto">Acepto todos los términos y condiciones</label>
+        </div>
+
+        <button type="submit" class="btn-register">Registro</button>
+
+        <p class="link">
+          ¿Ya estás registrado? <a href="#">Ingresa aquí</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789

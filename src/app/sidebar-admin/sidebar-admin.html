@@ -1,10 +1,15 @@
 <!-- CONTENEDOR RAÍZ -->
 <aside class="sidebar-wrap">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
   <!-- Fondo del sidebar (mantiene bordes y color) -->
   <div class="sidebar-bg"></div>
 
   <!-- Contenido principal del sidebar -->
   <div class="sidebar-inner">
+<<<<<<< HEAD
     <!-- Sección Usuario -->
     <header class="user">
       <div class="avatar">
@@ -23,6 +28,19 @@
         </div>
         <div class="email">{{ user.email || '—' }}</div>
         <!-- { user.name || '—' }} -->
+=======
+    
+    <!-- Sección Usuario -->
+    <header class="user">
+      <div class="avatar">
+        <img *ngIf="user.avatarUrl" [src]="user.avatarUrl" alt="User Avatar" />
+        <i *ngIf="!user.avatarUrl" class="fa-solid fa-user-circle"></i>
+      </div>
+
+      <div class="user-info">
+        <div class="name">{{ user.name }}</div>
+        <div class="email">{{ user.email }}</div>
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
       </div>
     </header>
 
@@ -38,7 +56,14 @@
         >
           <span class="icon-box">
             <i class="{{ item.icon }}"></i>
+<<<<<<< HEAD
             <span *ngIf="item.label === 'Clientes'" class="notification-dot"></span>
+=======
+            <span
+              *ngIf="item.label === 'Clientes'"
+              class="notification-dot"
+            ></span>
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
           </span>
           <span class="label">{{ item.label }}</span>
         </a>
@@ -59,5 +84,9 @@
         <span class="label">{{ bottomItem.label }}</span>
       </a>
     </footer>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
   </div>
 </aside>

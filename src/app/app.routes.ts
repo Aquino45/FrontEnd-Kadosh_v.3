@@ -6,6 +6,11 @@ import { NotificationButtonComponent } from './notification-button/notification-
 import { HomeAdminComponent } from './home-admin/home-admin';
 import { InicioComponent } from './admin/inicio/inicio';
 import { ClientesComponent } from './admin/clientes/clientes';
+<<<<<<< HEAD
+=======
+import { NewClientComponent } from './admin/clientes/new-client/new-client';
+import { RegisterComponent } from './register/register';
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
 
 export const routes: Routes = [
   {
@@ -21,6 +26,10 @@ export const routes: Routes = [
     path: 'home-admin', component: HomeAdminComponent, children: [
       { path: 'inicio', loadComponent: () => import('./admin/inicio/inicio').then(m => m.InicioComponent) },
       { path: 'clientes', loadComponent: () => import('./admin/clientes/clientes').then(m => m.ClientesComponent) },
+<<<<<<< HEAD
+=======
+      { path: 'clientes/nuevo', loadComponent: () => import('./admin/clientes/new-client/new-client').then(m => m.NewClientComponent) },
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
       { path: 'historial-optico', loadComponent: () => import('./admin/historial-optico/historial-optico').then(m => m.HistorialOpticoComponent) },
       { path: 'facturacion', loadComponent: () => import('./admin/facturacion/facturacion').then(m => m.FacturacionComponent) },
       { path: 'ajustes', loadComponent: () => import('./admin/ajustes/ajustes').then(m => m.AjustesComponent) },
@@ -30,5 +39,10 @@ export const routes: Routes = [
   },
   { path: 'inicio', component: InicioComponent },
   { path: 'clientes', component: ClientesComponent},
+<<<<<<< HEAD
+=======
+  { path: 'add', component: NewClientComponent},
+  { path: 'register', component: RegisterComponent },
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
 
 ];

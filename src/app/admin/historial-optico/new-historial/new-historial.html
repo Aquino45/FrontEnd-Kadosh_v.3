@@ -1,0 +1,131 @@
+<div class="hist-page">
+  <div class="toolbar">
+    <h1 class="title">Registrar nuevo historial</h1>
+    <button class="back-link" (click)="cancel()">Regresar</button>
+  </div>
+  <span class="accent"></span>
+
+  <form class="hist-grid" [formGroup]="form" (ngSubmit)="submit()">
+    <!-- CABECERA -->
+    <section class="card head">
+      <div class="row">
+        <label>
+          <span class="lbl">Fecha</span>
+          <input type="date" formControlName="fecha" />
+        </label>
+        <label class="grow">
+          <span class="lbl">Paciente</span>
+          <input type="text" placeholder="Nombre y apellidos" formControlName="paciente" />
+        </label>
+      </div>
+
+      <div class="row">
+        <label>
+          <span class="lbl">Teléfono</span>
+          <input type="tel" placeholder="Ej. 987 654 321" formControlName="telefono" />
+        </label>
+        <label>
+          <span class="lbl">Edad</span>
+          <input type="number" min="0" placeholder="Ej. 28" formControlName="edad" />
+        </label>
+        <label>
+          <span class="lbl">DNI</span>
+          <input type="text" placeholder="Documento" formControlName="dni" />
+        </label>
+      </div>
+    </section>
+
+    <!-- VISIÓN DE LEJOS -->
+    <section class="card">
+      <h3 class="sec-title">Visión de lejos</h3>
+      <div class="table-wrap">
+        <table class="rx-table" [formArrayName]="'lejos'">
+          <thead>
+          <tr>
+            <th class="ojo">OJO</th>
+            <th>ESF</th>
+            <th>CIL</th>
+            <th>EJE</th>
+            <th>DIP</th>
+            <th>AV</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let g of lejosFA.controls; let i = index" [formGroupName]="i">
+            <td class="ojo"><input class="eye" formControlName="ojo"  /></td>
+            <td><input type="text" formControlName="esf" [attr.inputmode]="numberInputAttrs.inputmode" [attr.pattern]="numberInputAttrs.pattern" placeholder="ej. -1.25" /></td>
+            <td><input type="text" formControlName="cil" [attr.inputmode]="numberInputAttrs.inputmode" [attr.pattern]="numberInputAttrs.pattern" placeholder="ej. -0.50" /></td>
+            <td><input type="text" formControlName="eje" [attr.inputmode]="'numeric'" placeholder="ej. 180" /></td>
+            <td><input type="text" formControlName="dip" [attr.inputmode]="numberInputAttrs.inputmode" placeholder="ej. 63" /></td>
+            <td><input type="text" formControlName="av"  placeholder="ej. 20/20 o 1.0" /></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- VISIÓN DE CERCA -->
+    <section class="card">
+      <h3 class="sec-title">Visión de cerca</h3>
+      <div class="table-wrap">
+        <table class="rx-table" [formArrayName]="'cerca'">
+          <thead>
+          <tr>
+            <th class="ojo">OJO</th>
+            <th>ESF</th>
+            <th>CIL</th>
+            <th>EJE</th>
+            <th>DIP</th>
+            <th>AV</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let g of cercaFA.controls; let i = index" [formGroupName]="i">
+            <td class="ojo"><input class="eye" formControlName="ojo"  /></td>
+            <td><input type="text" formControlName="esf" [attr.inputmode]="numberInputAttrs.inputmode" [attr.pattern]="numberInputAttrs.pattern" placeholder="ej. +1.50" /></td>
+            <td><input type="text" formControlName="cil" [attr.inputmode]="numberInputAttrs.inputmode" [attr.pattern]="numberInputAttrs.pattern" placeholder="ej. -0.25" /></td>
+            <td><input type="text" formControlName="eje" [attr.inputmode]="'numeric'" placeholder="ej. 090" /></td>
+            <td><input type="text" formControlName="dip" [attr.inputmode]="numberInputAttrs.inputmode" placeholder="ej. 62" /></td>
+            <td><input type="text" formControlName="av"  placeholder="ej. J1" /></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- KERATOMETRÍA -->
+    <section class="card">
+      <h3 class="sec-title">Keratometría</h3>
+      <div class="row">
+        <label class="grow">
+          <span class="lbl">OD</span>
+          <input type="text" formControlName="k_od" placeholder="Valores OD" />
+        </label>
+        <label>
+          <span class="lbl">LC</span>
+          <input type="text" formControlName="k_lc" placeholder="Tipo / Potencia" />
+        </label>
+        <label class="grow">
+          <span class="lbl">OI</span>
+          <input type="text" formControlName="k_oi" placeholder="Valores OI" />
+        </label>
+                <label>
+          <span class="lbl">LC</span>
+          <input type="text" formControlName="k_lc" placeholder="Tipo / Potencia" />
+        </label>
+      </div>
+    </section>
+
+    <!-- RECOMENDACIONES -->
+    <section class="card">
+      <h3 class="sec-title">Recomendaciones</h3>
+      <textarea class="notes" rows="4" formControlName="recomendaciones" placeholder="Indicaciones, control, tipo de lente, etc."></textarea>
+    </section>
+
+    <!-- ACCIONES -->
+    <div class="form-actions">
+      <button class="btn-primary" type="submit">Confirmar</button>
+      <button class="btn-ghost" type="button" (click)="cancel()">Cancelar</button>
+    </div>
+  </form>
+</div>

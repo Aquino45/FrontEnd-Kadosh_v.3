@@ -1,4 +1,8 @@
 <div class="clientes-page">
+<<<<<<< HEAD
+=======
+  <ng-container *ngIf="!showForm; else formView"> 
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
   <!-- Toolbar superior -->
   <div class="toolbar">
     <div class="title-wrap">
@@ -18,7 +22,11 @@
   </div>
 
   <!-- Aquí vendrá tu tabla/lista/filtros -->
+<<<<<<< HEAD
 <div class="content">
+=======
+  <div class="content">
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
     <table class="client-table">
       <thead>
         <tr>
@@ -30,9 +38,15 @@
       <tbody>
         <tr *ngFor="let client of clients; let i = index">
           <td>{{ i + 1 }}</td>
+<<<<<<< HEAD
           <td>{{ client.name }}</td>
           <td class="actions-cell">
             <button class="btn-view">
+=======
+          <td>{{ client.nombre }} {{ client.apellido}}</td>
+          <td class="actions-cell">
+            <button class="btn-view" (click)="openInfo(client)">
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
               <i class="fa-solid fa-eye"></i> Ver
             </button>
             <button class="btn-delete" (click)="openDeleteConfirm(client)">
@@ -49,6 +63,7 @@
       <p>No hay clientes registrados.</p>
     </div>
   </div>
+<<<<<<< HEAD
 </div>
 
 
@@ -62,6 +77,16 @@
   aria-labelledby="confirm-title"
   aria-describedby="confirm-desc"
 >
+=======
+  </ng-container>
+</div>
+
+
+
+<!-- ================= MODAL DE CONFIRMACIÓN ================= -->
+<div class="modal-overlay" *ngIf="isConfirmOpen" (keydown.escape)="closeConfirm()" role="dialog" aria-modal="true"
+  aria-labelledby="confirm-title" aria-describedby="confirm-desc">
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
   <div class="modal">
     <div class="modal-header">
       <h3 id="confirm-title">
@@ -75,7 +100,11 @@
 
     <div class="modal-body" id="confirm-desc">
       ¿Seguro que deseas eliminar a
+<<<<<<< HEAD
       <strong>{{ clientToDelete?.name }}</strong>?
+=======
+      <strong>{{ clientToDelete?.nombre }} {{ clientToDelete?.apellido }}</strong>?
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
       <br />
       <small>Esta acción no se puede deshacer.</small>
     </div>
@@ -91,3 +120,17 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
+=======
+
+<app-modal-info
+  [open]="isInfoOpen"
+  [client]="clientToView"
+  (close)="closeInfo()">
+</app-modal-info>
+
+<!-- ====== VISTA FORMULARIO NUEVO CLIENTE ====== -->
+<ng-template #formView>
+  <app-new-client (close)="closeForm()"></app-new-client>
+</ng-template>
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789

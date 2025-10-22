@@ -182,6 +182,104 @@
   color: #a42112;
 }
 
+<<<<<<< HEAD
+=======
+/* ====== MODAL ====== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 10, 28, 0.35);
+  backdrop-filter: blur(2px);
+  display: grid;
+  place-items: center;
+  z-index: 999;
+  animation: fadeIn .15s ease-out;
+}
+
+.modal {
+  width: min(92vw, 560px);
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #ebeaf3;
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+  overflow: hidden;
+  animation: zoomIn .16s ease-out;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid #f0f1f6;
+}
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.modal-header h3 i { color: #d83a2e; }
+
+.icon-close {
+  appearance: none;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  color: #6a6a7a;
+}
+.icon-close:hover { color: #1e1e27; }
+
+.modal-body {
+  padding: 18px;
+  color: #2b2b35;
+  line-height: 1.5;
+}
+.modal-body small { color: #8b8aa2; }
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 18px 18px;
+}
+
+/* Botones del modal */
+.btn-ghost {
+  background: #f3f5fb;
+  border: 1px solid #e6e9f5;
+  color: #2b2140;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-ghost:hover { background: #e9ecf8; }
+
+.btn-danger {
+  background: #a42112;
+  border: 1px solid #951e10;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 6px 14px rgba(164,33,18,.25);
+}
+.btn-danger:hover { background: #8b1c0f; }
+
+/* Animaciones */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes zoomIn { from { transform: scale(.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
 /* Responsive */
 @media (max-width: 768px) {
     .title {

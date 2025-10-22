@@ -43,7 +43,10 @@
 /* Contenedor interno: grid con 3 secciones */
 .sidebar-inner {
   position: relative;
+<<<<<<< HEAD
   
+=======
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
   height: 100%;
   padding: 28px 14px 16px;
   display: flex;
@@ -127,6 +130,7 @@
 
 .nav {
   flex: 1;
+<<<<<<< HEAD
   overflow-y: auto;            /* mantiene el scroll funcional */
   -ms-overflow-style: none;    /* IE/Edge */
   scrollbar-width: none;       /* Firefox */
@@ -141,6 +145,14 @@
 }
 
 
+=======
+  /* ocupa todo el espacio disponible */
+  overflow-y: auto;
+  /* permite scroll */
+  margin-bottom: 30px;
+}
+
+>>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
 .nav-item {
   display: grid;
   grid-template-columns: 28px 1fr;
