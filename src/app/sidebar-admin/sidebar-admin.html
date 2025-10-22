@@ -1,0 +1,61 @@
+<!-- CONTENEDOR RAÍZ -->
+<aside class="sidebar-wrap">
+
+  <!-- Fondo del sidebar (mantiene bordes y color) -->
+  <div class="sidebar-bg"></div>
+
+  <!-- Contenido principal del sidebar -->
+  <div class="sidebar-inner">
+    
+    <!-- Sección Usuario -->
+    <header class="user">
+      <div class="avatar">
+        <img *ngIf="user.avatarUrl" [src]="user.avatarUrl" alt="User Avatar" />
+        <i *ngIf="!user.avatarUrl" class="fa-solid fa-user-circle"></i>
+      </div>
+
+      <div class="user-info">
+        <div class="name">{{ user.name }}</div>
+        <div class="email">{{ user.email }}</div>
+      </div>
+    </header>
+
+    <!-- Navegación principal -->
+    <nav class="nav">
+      <div class="nav-group">
+        <a
+          *ngFor="let item of primaryItems"
+          class="nav-item"
+          [routerLink]="item.link"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span class="icon-box">
+            <i class="{{ item.icon }}"></i>
+            <span
+              *ngIf="item.label === 'Clientes'"
+              class="notification-dot"
+            ></span>
+          </span>
+          <span class="label">{{ item.label }}</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Cerrar sesión -->
+    <footer class="logout-section">
+      <a
+        class="logout"
+        [routerLink]="bottomItem.link"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="icon-box">
+          <i class="{{ bottomItem.icon }}"></i>
+        </span>
+        <span class="label">{{ bottomItem.label }}</span>
+      </a>
+    </footer>
+
+  </div>
+</aside>

@@ -1,0 +1,102 @@
+.hdr {
+  position: relative;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 12px 65px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.brand img {
+  height: 50px;
+  object-fit: contain;
+  display: block;
+}
+
+.search-bar-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+app-search-bar {
+  width: 100%;
+  max-width: 616px;
+  min-width: 250px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Botones */
+.icon-btn {
+  width: 39px;
+  height: 39px;
+  border: none;
+  border-radius: 12px;
+  background: var(--purple-700, #582865);
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  transition: transform .08s ease, box-shadow .2s ease, opacity .2s ease;
+}
+
+.icon-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.16);
+}
+
+.icon-btn:active {
+  transform: translateY(0);
+  opacity: .9;
+}
+
+/* Fecha */
+.date {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: "Inter", system-ui, sans-serif;
+}
+.date .day {
+  display: inline-block;
+  width: 70px;            /* ajusta según tu diseño */
+  text-align: center;      /* o center/left, según prefieras */
+  font-weight: 600;
+  color: var(--purple-700, #4b1f71);
+  text-transform: capitalize;
+}
+.date .dot {
+  color: #b8a8cc;
+}
+.date .full-date {
+  color: #8a7aa1;
+  font-weight: 500;
+}
+
+/* Input oculto */
+.date-input-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .actions { gap: 8px; }
+  .date { display: none; }
+}

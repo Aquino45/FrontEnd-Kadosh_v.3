@@ -1,0 +1,219 @@
+:host {
+  --purple-700: #582865;
+  --purple-600: #5b2b88;
+  --text: #ffffff;
+  --text-muted: #d7cde6;
+  --chip-bg: #ffffff;
+  --chip-text: #2b2140;
+  --chip-shadow: 0 6px 16px rgba(0, 0, 0, .15);
+  --radius: 14px;
+  font-family: "Inter", sans-serif;
+  
+}
+
+/* ====== CONTENEDORES PRINCIPALES ====== */
+
+/* Envoltorio general (NO recorta el avatar) */
+.sidebar-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 135px;
+  /* altura del header */
+  bottom: 0;
+  width: 260px;
+  overflow: visible;
+  /* permite sobresalir el avatar */
+  
+  z-index: 30;
+}
+
+/* Fondo morado con bordes redondeados */
+.sidebar-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--purple-700);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+  /* recorta el color, no el avatar */
+  z-index: 0;
+}
+
+/* Contenedor interno: grid con 3 secciones */
+.sidebar-inner {
+  position: relative;
+  height: 100%;
+  padding: 28px 14px 16px;
+  display: flex;
+  /* ✅ columna flexible */
+  flex-direction: column;
+  grid-template-rows: auto 1fr auto;
+  gap: 16px;
+  color: var(--text);
+  z-index: 1;
+}
+
+/* ====== SECCIÓN USUARIO ====== */
+
+.user {
+  position: sticky;
+  top: 0;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 34px 10px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+  background: transparent;
+  margin-top: -59.921px;
+  /* hace que el avatar asome por arriba */
+  z-index: 2;
+}
+
+.avatar {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, .14);
+  border: 3px solid #fff;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, .35);
+  overflow: hidden;
+  /* recorta solo la imagen circular */
+  margin-top: -50px;
+  /* “saca” el avatar hacia arriba */
+  position: relative;
+  z-index: 3;
+  /* sobre todo lo demás */
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar .fa-solid {
+  font-size: 34px;
+  color: #fff;
+  opacity: .95;
+}
+
+.user-info {
+  display: grid;
+  gap: 2px;
+}
+
+.user-info .name {
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.1;
+}
+
+.user-info .email {
+  color: var(--text-muted);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ====== NAVEGACIÓN ====== */
+
+.nav {
+  flex: 1;
+  /* ocupa todo el espacio disponible */
+  overflow-y: auto;
+  /* permite scroll */
+  margin-bottom: 30px;
+}
+
+.nav-item {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text);
+  transition: background .15s ease, color .15s ease, transform .05s ease;
+  outline: none;
+  margin-bottom: 14px;
+}
+
+.nav-item .icon-box {
+  font-size: 20px;
+  opacity: .95;
+  position: relative;
+}
+
+.nav-item .label {
+  font-size: 14px;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, .08);
+}
+
+.nav-item.active {
+  background: var(--chip-bg);
+  color: var(--chip-text);
+  box-shadow: var(--chip-shadow);
+}
+
+.nav-item.active .icon-box {
+  color: var(--purple-600);
+}
+
+/* PUNTO NOTIFICACIÓN (Clientes) */
+.notification-dot {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  width: 8px;
+  height: 8px;
+  background: #ffeb3b;
+  border-radius: 50%;
+}
+
+/* ====== LOGOUT ====== */
+
+.logout-section {
+  position: sticky;
+  /* se mantiene visible al final */
+  bottom: 0;
+  background: var(--purple-700);
+  padding: 8px 0 12px;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  z-index: 5;
+}
+
+.logout {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text);
+  transition: background .15s ease;
+}
+
+.logout:hover {
+  background: rgba(255, 255, 255, .08);
+}
+
+/* Ajustes finos */
+.nav-item .icon-box i {
+  font-size: 18px;
+}
+
+.nav-item.active .label {
+  font-weight: 600;
+}

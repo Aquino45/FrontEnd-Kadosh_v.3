@@ -1,0 +1,33 @@
+<header class="hdr">
+  <!-- Marca -->
+  <div class="brand">
+    <img [src]="logoSrc" [alt]="logoAlt" />
+  </div>
+
+  <!-- Barra de búsqueda -->
+  <div class="search-bar-container">
+    <app-search-bar [placeholder]="'Buscar...'" (search)="onSearch($event)" (queryChange)="onQueryChange($event)">
+    </app-search-bar>
+  </div>
+  <!-- Acciones -->
+  <div class="actions">
+    <!-- Botón de notificaciones -->
+    <app-notif-btn [badge]="notifCount" (clicked)="onBellClick()">
+    </app-notif-btn>
+
+    <!-- Botón de calendario -->
+    <button class="icon-btn" (click)="openCalendar()" title="Calendario">
+      <i class="fa-solid fa-calendar-days"></i>
+    </button>
+
+    <!-- Input de fecha oculto -->
+    <input type="date" class="date-input-hidden" [value]="selectedDateISO" (change)="onDateChange($event)" />
+
+    <!-- Texto de la fecha -->
+    <div class="date">
+      <span class="day">{{ today | date:'EEEE':'':'es-PE' }}</span>
+      <span class="dot">•</span>
+      <span class="full-date">{{ today | date:'dd/MM/yyyy' }}</span>
+    </div>
+  </div>
+</header>

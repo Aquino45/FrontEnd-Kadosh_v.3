@@ -1,0 +1,26 @@
+<div class="clientes-page">
+  <ng-container *ngIf="!showForm; else formView">
+    <!-- Toolbar superior -->
+    <div class="toolbar">
+      <div class="title-wrap">
+        <h1 class="title">Lista de Historiales ópticos</h1>
+        <span class="accent"></span>
+      </div>
+
+      <button type="button" class="back-link" (click)="goBack()">Regresar</button>
+    </div>
+
+    <!-- Acciones -->
+    <div class="actions">
+      <button type="button" class="btn-primary" (click)="openForm()">
+        <i class="fa-solid fa-file-medical"></i>
+        <span>Nuevo Historial </span>
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-template #formView>
+    <app-new-historial (close)="closeForm()"></app-new-historial>
+  </ng-template>
+
+</div>

@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.page-register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #f3eef9;
+  background-image: url('/assets/Images/bg_login.jpg');
+  background-repeat: repeat;
+  background-size: 600px;
+  padding: 20px;
+}
+.page-register::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(84, 43, 99, 0.90);
+  z-index: 1;
+}
+
+
+/* Lado izquierdo (imagen del local) */
+.left-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-side img {
+  width: 95%;
+  max-width: 700px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Lado derecho (formulario) */
+.right-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-form {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.15);
+  width: 420px;
+  position: relative;
+  z-index: 2;
+}
+
+.register-form h2 {
+  font-size: 26px;
+  margin-bottom: 25px;
+  color: #3d2b5f;
+  font-weight: 700;
+}
+
+/* Campos de entrada */
+.input-group {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.input-group i {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #7d53a2;
+  font-size: 18px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 12px 12px 38px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #7d53a2;
+  box-shadow: 0 0 5px rgba(125, 83, 162, 0.3);
+}
+
+/* Checkbox */
+.terms {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 18px;
+  gap: 8px;
+}
+
+/* Botón */
+.btn-register {
+  width: 100%;
+  padding: 12px;
+  background: #7d53a2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.btn-register:hover {
+  background: #5f3a7d;
+}
+
+/* Enlace inferior */
+.link {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.link a {
+  color: #7d53a2;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.link a:hover {
+  text-decoration: underline;
+}
+
+/* Adaptación móvil */
+@media (max-width: 900px) {
+  .page-register {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-side img {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+  .register-form {
+    width: 90%;
+  }
+}

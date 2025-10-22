@@ -1,0 +1,60 @@
+<div
+  class="modal-overlay"
+  *ngIf="open"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="info-title"
+  aria-describedby="info-desc"
+  (keydown.escape)="onClose()"
+>
+  <div class="modal">
+    <!-- Header -->
+    <div class="modal-header">
+      <h3 id="info-title">
+        <i class="fa-solid fa-circle-info"></i>
+        Información del cliente
+      </h3>
+      <button class="icon-close" (click)="onClose()" aria-label="Cerrar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body" id="info-desc">
+      <div class="profile">
+        <div class="avatar">
+          <img *ngIf="client?.foto" [src]="client?.foto" alt="Foto del cliente" />
+          <i *ngIf="!client?.foto" class="fa-solid fa-user"></i>
+        </div>
+        <div class="meta">
+          <div class="name">{{ client?.nombre }} {{ client?.apellido }}</div>
+          <div class="sub">DNI: {{ client?.dni || 'No registrado' }}</div>
+        </div>
+      </div>
+
+      <div class="fields">
+        <div class="field">
+          <span class="label"><i class="fa-solid fa-envelope"></i> Email</span>
+          <span class="value">{{ client?.email || 'No registrado' }}</span>
+        </div>
+
+        <div class="field">
+          <span class="label"><i class="fa-solid fa-phone"></i> Teléfono</span>
+          <span class="value">{{ client?.telefono || 'No registrado' }}</span>
+        </div>
+
+        <div class="field">
+          <span class="label"><i class="fa-solid fa-calendar"></i> Fecha de registro</span>
+          <span class="value">
+            {{ client?.created_at ? (client?.created_at | date:'dd/MM/yyyy') : 'Sin fecha' }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button class="btn-ghost" (click)="onClose()">Cerrar</button>
+    </div>
+  </div>
+</div>

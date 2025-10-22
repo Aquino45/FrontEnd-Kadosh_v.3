@@ -1,0 +1,124 @@
+:host {
+  /* Variables para ajustar las áreas globales */
+  --header-h: 75px;
+  --sidebar-w: 261px;
+  --sidebar-w-collapsed: 84px;
+  /* ancho cuando colapsa */
+  --content-min-h: 100dvh;
+  /* altura mínima del área de contenido */
+  --content-gap: 0px;
+  --bg: #f6f5fa;
+  --content-px: 120px;
+  /* padding horizontal del main */
+  --content-py: 40px;
+  /* padding vertical del main */
+  --container-max: 100%;
+  /* ancho máx del panel */
+  --container-pad: 40px;
+  /* padding interno del panel */
+  --container-radius: 16px;
+  /* radio del panel */
+}
+
+/* ======== ESTRUCTURA PRINCIPAL ======== */
+.admin-shell {
+  display: grid;
+  grid-template-rows: var(--header-h) minmax(0, 1fr);
+  /* fila 1 = header, fila 2 = contenido flexible */
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  /* col 1 = sidebar, col 2 = contenido flexible */
+  grid-template-areas:
+    "header header"
+    "sidebar content";
+  min-height: var(--content-min-h);
+  background: var(--bg);
+  gap: var(--content-gap);
+  /* separación entre áreas */
+}
+
+/* ======== HEADER ======== */
+.area-header {
+  grid-area: header;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ======== SIDEBAR ======== */
+.area-sidebar {
+  grid-area: sidebar;
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100dvh - var(--header-h));
+  overflow: auto;
+  background: transparent;
+  z-index: 50;
+}
+
+/* ======== CONTENIDO PRINCIPAL ======== */
+.main-area {
+  grid-area: content;
+  padding: var(--content-py) var(--content-px);
+  overflow: auto;
+  border-top-left-radius: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Card del contenido */
+.content-card {
+  width: 100%;
+  margin-top: 20px;
+  max-width: var(--container-max);
+  background: #ffffff;
+  border: 1px solid #e2e6f3;
+  border-radius: var(--container-radius);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, .04),
+    0 8px 24px rgba(0, 0, 0, .06);
+  padding: var(--container-pad);
+  min-height: 68vh;
+}
+
+/* ======== SIDEBAR COLAPSADO ======== */
+.admin-shell.sidebar-collapsed {
+  grid-template-columns: var(--sidebar-w-collapsed) 1fr;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 900px) {
+  :host {
+    --header-h: 72px;
+    --sidebar-w: 220px;
+    --content-px: 16px;
+    --content-py: 16px;
+    --container-pad: 16px;
+  }
+
+  .admin-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--header-h) 1fr;
+    grid-template-areas:
+      "header"
+      "content";
+  }
+
+  .area-sidebar {
+    position: fixed;
+    inset: var(--header-h) auto 0 0;
+    width: var(--sidebar-w);
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+
+  .admin-shell.sidebar-collapsed .area-sidebar {
+    transform: translateX(0);
+  }
+
+  .area-content {
+    padding: 20px;
+  }
+}
