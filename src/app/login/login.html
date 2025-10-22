@@ -1,0 +1,49 @@
+<div class="login-container">
+  <div class="login-box">
+    <div class="logo">
+      <img src="/assets/Images/logo_Kadosh.png" alt="Logo de Ópticas KADOSH">
+    </div>
+
+    <h2>Iniciar Sesión</h2>
+
+    <form (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+      <div class="input-group">
+        <i class="fas fa-user icon"></i>
+        <input
+          id="usuario"
+          name="usuario"
+          type="text"
+          placeholder="DNI"
+          [(ngModel)]="usuario"
+          required>
+      </div>
+
+      <div class="input-group">
+        <i class="fas fa-lock icon"></i>
+        <input
+          id="contrasena"
+          name="contrasena"
+          type="password"
+          placeholder="Contraseña"
+          [(ngModel)]="contrasena"
+          required>
+      </div>
+
+      <div class="remember-me">
+        <input
+          type="checkbox"
+          id="recordarme"
+          name="recordar"
+          [(ngModel)]="recordar">
+        <label for="recordarme">Recuérdame</label>
+      </div>
+
+      <!-- ❌ Eliminamos el mensaje viejo de error -->
+      <!-- <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p> -->
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Ingresando...' : 'Iniciar' }}
+      </button>
+    </form>
+  </div>
+</div>

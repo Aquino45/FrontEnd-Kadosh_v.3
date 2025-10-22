@@ -1,0 +1,93 @@
+<div class="clientes-page">
+  <!-- Toolbar superior -->
+  <div class="toolbar">
+    <div class="title-wrap">
+      <h1 class="title">Lista de clientes</h1>
+      <span class="accent"></span>
+    </div>
+
+    <button type="button" class="back-link" (click)="goBack()">Regresar</button>
+  </div>
+
+  <!-- Acciones -->
+  <div class="actions">
+    <button type="button" class="btn-primary" (click)="newClient()">
+      <i class="fa-solid fa-user-plus"></i>
+      <span>Nuevo cliente</span>
+    </button>
+  </div>
+
+  <!-- Aquí vendrá tu tabla/lista/filtros -->
+<div class="content">
+    <table class="client-table">
+      <thead>
+        <tr>
+          <th>N</th>
+          <th>Nombre del cliente</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ client.name }}</td>
+          <td class="actions-cell">
+            <button class="btn-view">
+              <i class="fa-solid fa-eye"></i> Ver
+            </button>
+            <button class="btn-delete" (click)="openDeleteConfirm(client)">
+              <i class="fa-solid fa-trash"></i> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Mensaje si no hay clientes -->
+    <div class="empty" *ngIf="clients.length === 0">
+      <i class="fa-solid fa-user-slash"></i>
+      <p>No hay clientes registrados.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================= MODAL DE CONFIRMACIÓN ================= -->
+<div
+  class="modal-overlay"
+  *ngIf="isConfirmOpen"
+  (keydown.escape)="closeConfirm()"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="confirm-title"
+  aria-describedby="confirm-desc"
+>
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="confirm-title">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        Confirmar eliminación
+      </h3>
+      <button class="icon-close" (click)="closeConfirm()" aria-label="Cerrar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="modal-body" id="confirm-desc">
+      ¿Seguro que deseas eliminar a
+      <strong>{{ clientToDelete?.name }}</strong>?
+      <br />
+      <small>Esta acción no se puede deshacer.</small>
+    </div>
+
+    <div class="modal-footer">
+      <button id="confirm-cancel" class="btn-ghost" (click)="closeConfirm()">
+        Cancelar
+      </button>
+      <button class="btn-danger" (click)="confirmDelete()">
+        <i class="fa-solid fa-trash"></i>
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>
