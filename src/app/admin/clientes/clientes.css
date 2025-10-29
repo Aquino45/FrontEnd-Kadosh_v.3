@@ -182,8 +182,6 @@
   color: #a42112;
 }
 
-<<<<<<< HEAD
-=======
 /* ====== MODAL ====== */
 .modal-overlay {
   position: fixed;
@@ -279,7 +277,6 @@
 @keyframes zoomIn { from { transform: scale(.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
 
->>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
 /* Responsive */
 @media (max-width: 768px) {
     .title {

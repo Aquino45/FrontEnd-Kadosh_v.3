@@ -1,15 +1,4 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
-
-@Component({
-  selector: 'app-register',
-  imports: [],
-  templateUrl: './register.html',
-  styleUrl: './register.css'
-})
-export class Register {
-
-=======
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -50,5 +39,4 @@ export class RegisterComponent {
 
     alert('Registro completado exitosamente ✅');
   }
->>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
 }

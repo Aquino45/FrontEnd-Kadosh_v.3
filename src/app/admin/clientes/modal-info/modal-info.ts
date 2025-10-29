@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-modal-info',
-  imports: [],
-  templateUrl: './modal-info.html',
-  styleUrl: './modal-info.css'
-})
-export class ModalInfo {
-=======
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -47,6 +36,5 @@ export class ModalInfoComponent {
     this.close.emit();
   }
 
->>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
 
 }

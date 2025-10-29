@@ -1,7 +1,9 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UsuariosService } from '../../../../services/usuarios.service';
+import { ToastService } from '../../../shared/toast/toast.service'; // ajusta la ruta a tu toast.service
 
 @Component({
   standalone: true,
@@ -12,12 +14,15 @@ import { Router } from '@angular/router';
 })
 export class NewClientComponent {
   @Output() close = new EventEmitter<void>();
+
   private fb = inject(FormBuilder);
   private router = inject(Router);
-  private readonly phoneRegex = /^\d{9}$/; // 9 dígitos exactos
-  private readonly dniRegex = /^\d{8}$/;  // 8 dígitos exactos
+  private usuariosSvc = inject(UsuariosService);
+  private toast = inject(ToastService);
 
-  // avatar por defecto
+  private readonly phoneRegex = /^\d{9}$/;
+  private readonly dniRegex = /^\d{8}$/;
+
   readonly defaultAvatar = 'assets/Images/default_user_profile.png';
 
   form: FormGroup = this.fb.group({
@@ -26,22 +31,19 @@ export class NewClientComponent {
     email: ['', [Validators.email]],
     telefono: ['', [Validators.required, Validators.pattern(this.phoneRegex)]],
     dni: ['', [Validators.required, Validators.pattern(this.dniRegex)]],
-    foto: [null] // guardamos el File o base64 si quieres
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    foto: [null]
   });
 
   previewUrl: string = this.defaultAvatar;
 
-  // Helpers de template
   get f() { return this.form.controls; }
   get invalid() { return this.form.invalid; }
 
-  // Navegación
-  goBack() { history.back(); }
   cancel() {
-    this.close.emit();           // ← cierra y vuelve a la lista
+    this.close.emit();
   }
 
-  // Manejo de imagen
   onPickPhoto(input: HTMLInputElement) {
     input.click();
   }
@@ -49,14 +51,14 @@ export class NewClientComponent {
   onPhotoSelected(ev: Event) {
     const file = (ev.target as HTMLInputElement).files?.[0];
     if (!file) return;
-
-    // validación simple
-    if (!file.type.startsWith('image/')) return;
+    if (!file.type.startsWith('image/')) {
+      this.toast.warning('El archivo seleccionado no es una imagen válida.');
+      return;
+    }
 
     this.form.patchValue({ foto: file });
-    // preview
     const reader = new FileReader();
-    reader.onload = () => this.previewUrl = String(reader.result);
+    reader.onload = () => (this.previewUrl = String(reader.result));
     reader.readAsDataURL(file);
   }
 
@@ -75,25 +77,52 @@ export class NewClientComponent {
     });
   }
 
-  // Enviar datos
-  onSubmit() {
+  // 🚀 Enviar datos al backend
+  async onSubmit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.scrollToFirstError();
       return;
     }
 
-    // Aquí integrarías tu servicio HTTP
+    const val = this.form.value;
+    const imagenUrl =
+      this.previewUrl && this.previewUrl !== this.defaultAvatar ? this.previewUrl : null;
+
     const payload = {
-      ...this.form.value,
-      // si necesitas enviar base64, la tienes en this.previewUrl
+      nombre: val.nombre,
+      apellido: val.apellido,
+      email: val.email || null,
+      telefono: val.telefono,
+      dni: val.dni,
+      password: val.password,
+      imagenUrl
     };
-    console.log('Cliente a registrar:', payload);
 
-    // Redirige a la lista o muestra toast de éxito
-    this.router.navigate(['/admin/clientes']);
+    try {
+      const resp = await this.usuariosSvc.register(payload);
 
-    this.close.emit();    // ← cierra el formulario tras enviar
+      // ✅ usa solo el mensaje del backend si existe
+      const msg = resp?.message;
+
+      if (resp?.success) {
+        if (msg) this.toast.success(msg);   // <-- evita pasar undefined
+        this.close.emit();
+        this.router.navigate(['/admin/clientes']);
+      } else {
+        if (msg) this.toast.error(msg);     // <-- evita pasar undefined
+      }
+
+    } catch (err: any) {
+      // Si el backend devolvió mensaje de error, muéstralo
+      const backendMsg: string | undefined = err?.error?.message;
+      if (backendMsg) {
+        this.toast.error(backendMsg);
+      } else {
+        // opcional: un fallback genérico si no viene nada
+        this.toast.error('Error inesperado en el registro.');
+      }
+    }
+
   }
-
-
 }

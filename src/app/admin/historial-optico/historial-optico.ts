@@ -1,14 +1,4 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
-
-@Component({
-  selector: 'app-historial-optico',
-  imports: [],
-  templateUrl: './historial-optico.html',
-  styleUrl: './historial-optico.css'
-})
-export class HistorialOpticoComponent {
-=======
 import { CommonModule, Location } from '@angular/common';
 import { NewHistorialComponent } from './new-historial/new-historial';
 
@@ -34,6 +24,5 @@ export class HistorialOpticoComponent {
   closeForm() {
     this.showForm = false;
   }
->>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
 
 }

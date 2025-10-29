@@ -1,92 +1,71 @@
+<!-- src/app/pages/admin/clientes/clientes.html -->
 <div class="clientes-page">
-<<<<<<< HEAD
-=======
-  <ng-container *ngIf="!showForm; else formView"> 
->>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
-  <!-- Toolbar superior -->
-  <div class="toolbar">
-    <div class="title-wrap">
-      <h1 class="title">Lista de clientes</h1>
-      <span class="accent"></span>
+  <ng-container *ngIf="!showForm; else formView">
+    <!-- Toolbar superior -->
+    <div class="toolbar">
+      <div class="title-wrap">
+        <h1 class="title">Lista de clientes</h1>
+        <span class="accent"></span>
+      </div>
+
+      <button type="button" class="back-link" (click)="goBack()">Regresar</button>
     </div>
 
-    <button type="button" class="back-link" (click)="goBack()">Regresar</button>
-  </div>
-
-  <!-- Acciones -->
-  <div class="actions">
-    <button type="button" class="btn-primary" (click)="newClient()">
-      <i class="fa-solid fa-user-plus"></i>
-      <span>Nuevo cliente</span>
-    </button>
-  </div>
-
-  <!-- Aquí vendrá tu tabla/lista/filtros -->
-<<<<<<< HEAD
-<div class="content">
-=======
-  <div class="content">
->>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
-    <table class="client-table">
-      <thead>
-        <tr>
-          <th>N</th>
-          <th>Nombre del cliente</th>
-          <th>Acción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let client of clients; let i = index">
-          <td>{{ i + 1 }}</td>
-<<<<<<< HEAD
-          <td>{{ client.name }}</td>
-          <td class="actions-cell">
-            <button class="btn-view">
-=======
-          <td>{{ client.nombre }} {{ client.apellido}}</td>
-          <td class="actions-cell">
-            <button class="btn-view" (click)="openInfo(client)">
->>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
-              <i class="fa-solid fa-eye"></i> Ver
-            </button>
-            <button class="btn-delete" (click)="openDeleteConfirm(client)">
-              <i class="fa-solid fa-trash"></i> Delete
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- Mensaje si no hay clientes -->
-    <div class="empty" *ngIf="clients.length === 0">
-      <i class="fa-solid fa-user-slash"></i>
-      <p>No hay clientes registrados.</p>
+    <!-- Acciones -->
+    <div class="actions">
+      <button type="button" class="btn-primary" (click)="newClient()">
+        <i class="fa-solid fa-user-plus"></i>
+        <span>Nuevo cliente</span>
+      </button>
     </div>
-  </div>
-<<<<<<< HEAD
-</div>
 
+    <!-- Estado de carga / error -->
+    <div class="content">
+      <div *ngIf="loading" class="loading">
+        <i class="fa-solid fa-spinner fa-spin"></i> Cargando clientes...
+      </div>
 
-<!-- ================= MODAL DE CONFIRMACIÓN ================= -->
-<div
-  class="modal-overlay"
-  *ngIf="isConfirmOpen"
-  (keydown.escape)="closeConfirm()"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="confirm-title"
-  aria-describedby="confirm-desc"
->
-=======
+      <div *ngIf="!loading && loadError" class="error">
+        <i class="fa-solid fa-triangle-exclamation"></i> {{ loadError }}
+      </div>
+
+      <!-- Tabla -->
+      <table class="client-table" *ngIf="!loading && !loadError && clients.length > 0">
+        <thead>
+          <tr>
+            <th>N</th>
+            <th>Nombre del cliente</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of clients; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ client.nombre }} {{ client.apellido }}</td>
+            <td class="actions-cell">
+              <button class="btn-view" (click)="openInfo(client)">
+                <i class="fa-solid fa-eye"></i> Ver
+              </button>
+              <button class="btn-delete" (click)="openDeleteConfirm(client)">
+                <i class="fa-solid fa-trash"></i> Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Vacío -->
+      <div class="empty" *ngIf="!loading && !loadError && clients.length === 0">
+        <i class="fa-solid fa-user-slash"></i>
+        <p>No hay clientes registrados.</p>
+      </div>
+    </div>
   </ng-container>
 </div>
-
-
 
 <!-- ================= MODAL DE CONFIRMACIÓN ================= -->
 <div class="modal-overlay" *ngIf="isConfirmOpen" (keydown.escape)="closeConfirm()" role="dialog" aria-modal="true"
   aria-labelledby="confirm-title" aria-describedby="confirm-desc">
->>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
   <div class="modal">
     <div class="modal-header">
       <h3 id="confirm-title">
@@ -100,19 +79,13 @@
 
     <div class="modal-body" id="confirm-desc">
       ¿Seguro que deseas eliminar a
-<<<<<<< HEAD
-      <strong>{{ clientToDelete?.name }}</strong>?
-=======
       <strong>{{ clientToDelete?.nombre }} {{ clientToDelete?.apellido }}</strong>?
->>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
       <br />
       <small>Esta acción no se puede deshacer.</small>
     </div>
 
     <div class="modal-footer">
-      <button id="confirm-cancel" class="btn-ghost" (click)="closeConfirm()">
-        Cancelar
-      </button>
+      <button id="confirm-cancel" class="btn-ghost" (click)="closeConfirm()">Cancelar</button>
       <button class="btn-danger" (click)="confirmDelete()">
         <i class="fa-solid fa-trash"></i>
         Eliminar
@@ -120,8 +93,6 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-=======
 
 <app-modal-info
   [open]="isInfoOpen"
@@ -133,4 +104,3 @@
 <ng-template #formView>
   <app-new-client (close)="closeForm()"></app-new-client>
 </ng-template>
->>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789

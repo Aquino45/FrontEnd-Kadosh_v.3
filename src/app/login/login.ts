@@ -1,25 +1,18 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuariosService } from '../../services/usuarios.service';
 import { ToastService } from '../shared/toast/toast.service'; // ajusta ruta si difiere
-=======
->>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
 
 @Component({
   selector: 'app-login',
   standalone: true,
-<<<<<<< HEAD
   imports: [CommonModule, FormsModule],
-=======
->>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
 export class LoginComponent {
-<<<<<<< HEAD
   usuario = '';
   contrasena = '';
   recordar = false;
@@ -75,18 +68,4 @@ export class LoginComponent {
     // Fallback genérico
     return 'Ocurrió un error al procesar la solicitud.';
   }
-=======
-  usuario: string = '';
-  contrasena: string = '';
-  recordar: boolean = false;
-
-  onSubmit() {
-    if (this.usuario && this.contrasena) {
-      console.log('Formulario Enviado');
-      // Aquí puedes manejar la lógica para el login
-    } else {
-      console.log('Por favor, complete todos los campos');
-    }
-  }
->>>>>>> 659952dedf1050dc250ebbebcabe15ec48363789
 }
